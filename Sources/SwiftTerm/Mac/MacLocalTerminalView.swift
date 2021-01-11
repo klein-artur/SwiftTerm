@@ -38,6 +38,11 @@ public protocol LocalProcessTerminalViewDelegate {
      * - Parameter exitCode: the exit code returned by the process, or nil if this was an error caused during the IO reading/writing
      */
     func processTerminated (source: TerminalView, exitCode: Int32?)
+    
+    /**
+     * Called when a complete command is sent.
+     */
+    func commandSent()
 }
 
 /**
@@ -115,6 +120,10 @@ public class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, Local
     public func send(source: TerminalView, data: ArraySlice<UInt8>) 
     {
         process.send (data: data)
+    }
+    
+    public func commandSent() {
+        processDelegate?.commandSent()
     }
     
     /**

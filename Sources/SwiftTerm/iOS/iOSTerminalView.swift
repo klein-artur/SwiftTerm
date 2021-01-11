@@ -409,6 +409,9 @@ open class TerminalView: UIScrollView, UITextInputTraits, UIKeyInput, UIScrollVi
     
     open func send(source: Terminal, data: ArraySlice<UInt8>) {
         terminalDelegate?.send (source: self, data: data)
+        if (String(bytes: data, encoding: .utf8) == "\r") {
+            terminalDelegate?.commandSent()
+        }
     }
     
     /**

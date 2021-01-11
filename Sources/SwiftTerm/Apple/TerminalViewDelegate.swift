@@ -33,6 +33,11 @@ public protocol TerminalViewDelegate: class {
      * - Parameter data: Slice of data that should be sent
      */
     func send (source: TerminalView, data: ArraySlice<UInt8>)
+    
+    /**
+     * Called when a complete command is sent.
+     */
+    func commandSent()
   
     /**
      * Invoked when the terminal has been scrolled and the new position is provided
